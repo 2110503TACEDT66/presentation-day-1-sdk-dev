@@ -186,7 +186,6 @@ const { protect, authorize } = require("../middleware/auth");
 //Re-route into other resource routers
 router.use("/:hotelId/appointments/", appointmentRouter);
 
-router.route("/vacCenters").get(getVacCenters);
 router
   .route("/")
   .get(getHotels)
