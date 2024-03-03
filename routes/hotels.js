@@ -5,7 +5,6 @@ const {
   createHotel,
   updateHotel,
   deleteHotel,
-  getVacCenters,
 } = require("../controllers/Hotels");
 
 /**
@@ -177,14 +176,14 @@ const {
 */
 
 //Include other resource routes
-const appointmentRouter = require("./appointments");
+const reservationRouter = require("./reservations");
 
 const router = express.Router();
 
 const { protect, authorize } = require("../middleware/auth");
 
 //Re-route into other resource routers
-router.use("/:hotelId/appointments/", appointmentRouter);
+router.use("/:hotelId/reservations/", reservationRouter);
 
 router
   .route("/")

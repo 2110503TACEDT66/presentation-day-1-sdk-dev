@@ -1,5 +1,4 @@
 const Hotel = require("../models/Hotel.js");
-const vacCenter = require("../models/VacCenter.js");
 
 //@desc     Get all hotels
 //@route    Get /api/v1/hotels
@@ -25,7 +24,7 @@ exports.getHotels = async (req, res, next) => {
   );
 
   //finding resource
-  query = Hotel.find(JSON.parse(queryStr)).populate("appointments");
+  query = Hotel.find(JSON.parse(queryStr)).populate("reservations");
 
   //Select Fields
   if (req.query.select) {
@@ -136,18 +135,3 @@ exports.deleteHotel = async (req, res, next) => {
     res.status(400).json({ success: false });
   }
 };
-
-/*//@desc Get vaccine centers
-//@route GET /api/v1/hotels/vacCenters/
-//@access Public;
-exports.getVacCenters = (req, res, next) => {
-  vacCenter.getAll((err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message ||
-          "Some error occurred while retrieving Vaccine Centers.",
-      });
-    else res.send(data);
-  });
-};*/
