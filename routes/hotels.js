@@ -5,7 +5,7 @@ const {
   createHotel,
   updateHotel,
   deleteHotel,
-} = require("../controllers/Hotels");
+} = require("../controllers/hotels");
 
 /**
 * @swagger
