@@ -1,5 +1,5 @@
 const Appointment = require("../models/Appointment");
-const Hospital = require("../models/Hospital");
+const Hotel = require("../models/Hotel");
 
 //@desc Get all appointments
 //@route GET /api/v1/appointments
@@ -9,20 +9,20 @@ exports.getAppointments = async (req, res, next) => {
   //General users can see only their appointments!
   if (req.user.role !== "admin") {
     query = Appointment.find({ user: req.user.id }).populate({
-      path: "hospital",
+      path: "hotel",
       select: "name province tel",
     });
   } else {
     //If you are an admin, you can see all!
-    if (req.params.hospitalId) {
-      console.log(req.params.hospitalId);
-      query = Appointment.find({ hospital: req.params.hospitalId }).populate({
-        path: "hospital",
+    if (req.params.hotelId) {
+      console.log(req.params.hotelId);
+      query = Appointment.find({ hotel: req.params.hotelId }).populate({
+        path: "hotel",
         select: "name province tel",
       });
     } else
       query = Appointment.find().populate({
-        path: "hospital",
+        path: "hotel",
         select: "name province tel",
       });
   }
@@ -47,7 +47,7 @@ exports.getAppointments = async (req, res, next) => {
 exports.getAppointment = async (req, res, next) => {
   try {
     const appointment = await Appointment.findById(req.params.id).populate({
-      path: "hospital",
+      path: "hotel",
       select: "name description tel",
     });
     if (!appointment) {
@@ -69,16 +69,16 @@ exports.getAppointment = async (req, res, next) => {
 };
 
 //@desc Add appointment
-//@route POST /api/v1/hospitals/: hospitalId/appointment
+//@route POST /api/v1/hotels/: hotelId/appointment
 //@access Private
 exports.addAppointment = async (req, res, next) => {
   try {
-    req.body.hospital = req.params.hospitalId;
-    const hospital = await Hospital.findById(req.params.hospitalId);
-    if (!hospital) {
+    req.body.hotel = req.params.hotelId;
+    const hotel = await Hotel.findById(req.params.hotelId);
+    if (!hotel) {
       return res.status(404).json({
         success: false,
-        message: `No hospital with the id of ${req.params.hospitalId}`,
+        message: `No hotel with the id of ${req.params.hotelId}`,
       });
     }
 

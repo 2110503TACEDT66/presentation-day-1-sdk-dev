@@ -7,10 +7,10 @@
 	},
 	"item": [
 		{
-			"name": "Hospitals",
+			"name": "Hotels",
 			"item": [
 				{
-					"name": "Get All Hospitals",
+					"name": "Get All Hotels",
 					"event": [
 						{
 							"listen": "test",
@@ -24,11 +24,11 @@
 									"\r",
 									"console.log(response);\r",
 									"\r",
-									"pm.test(\"There are some hospitals!!\", () => {\r",
+									"pm.test(\"There are some hotels!!\", () => {\r",
 									"    pm.expect(response.count).to.be.above(0);\r",
 									"});\r",
 									"\r",
-									"postman.setNextRequest(\"Create New Hospital\");"
+									"postman.setNextRequest(\"Create New Hotel\");"
 								],
 								"type": "text/javascript"
 							}
@@ -48,21 +48,21 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/hospitals",
+							"raw": "{{URL}}/api/v1/hotels",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"hospitals"
+								"hotels"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Get Single Hospital",
+					"name": "Get Single Hotel",
 					"event": [
 						{
 							"listen": "test",
@@ -72,7 +72,7 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"postman.setNextRequest(\"Update Single Hospital\");"
+									"postman.setNextRequest(\"Update Single Hotel\");"
 								],
 								"type": "text/javascript"
 							}
@@ -82,20 +82,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/hospitals/:hospital_ID",
+							"raw": "{{URL}}/api/v1/hotels/:hotel_ID",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"hospitals",
-								":hospital_ID"
+								"hotels",
+								":hotel_ID"
 							],
 							"variable": [
 								{
-									"key": "hospital_ID",
-									"value": "{{global_hospital_ID}}"
+									"key": "hotel_ID",
+									"value": "{{global_hotel_ID}}"
 								}
 							]
 						}
@@ -118,14 +118,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/hospitals/vacCenters",
+							"raw": "{{URL}}/api/v1/hotels/vacCenters",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"hospitals",
+								"hotels",
 								"vacCenters"
 							]
 						}
@@ -133,7 +133,7 @@
 					"response": []
 				},
 				{
-					"name": "Create New Hospital",
+					"name": "Create New Hotel",
 					"event": [
 						{
 							"listen": "test",
@@ -146,9 +146,9 @@
 									"const response = pm.response.json();\r",
 									"const new_hospita_id = response.data.id;\r",
 									"\r",
-									"pm.globals.set(\"global_hospital_ID\", new_hospita_id);\r",
+									"pm.globals.set(\"global_hotel_ID\", new_hospita_id);\r",
 									"\r",
-									"postman.setNextRequest(\"Get Single Hospital\");"
+									"postman.setNextRequest(\"Get Single Hotel\");"
 								],
 								"type": "text/javascript"
 							}
@@ -184,21 +184,21 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/hospitals",
+							"raw": "{{URL}}/api/v1/hotels",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"hospitals"
+								"hotels"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Update Single Hospital",
+					"name": "Update Single Hotel",
 					"event": [
 						{
 							"listen": "test",
@@ -208,7 +208,7 @@
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"postman.setNextRequest(\"Delete Single Hospital\");"
+									"postman.setNextRequest(\"Delete Single Hotel\");"
 								],
 								"type": "text/javascript"
 							}
@@ -244,20 +244,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/hospitals/:hospital_ID",
+							"raw": "{{URL}}/api/v1/hotels/:hotel_ID",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"hospitals",
-								":hospital_ID"
+								"hotels",
+								":hotel_ID"
 							],
 							"variable": [
 								{
-									"key": "hospital_ID",
-									"value": "{{global_hospital_ID}}"
+									"key": "hotel_ID",
+									"value": "{{global_hotel_ID}}"
 								}
 							]
 						}
@@ -265,7 +265,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete Single Hospital",
+					"name": "Delete Single Hotel",
 					"event": [
 						{
 							"listen": "test",
@@ -295,20 +295,20 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/hospitals/:hospital_ID",
+							"raw": "{{URL}}/api/v1/hotels/:hotel_ID",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"hospitals",
-								":hospital_ID"
+								"hotels",
+								":hotel_ID"
 							],
 							"variable": [
 								{
-									"key": "hospital_ID",
-									"value": "{{global_hospital_ID}}"
+									"key": "hotel_ID",
+									"value": "{{global_hotel_ID}}"
 								}
 							]
 						}
@@ -577,7 +577,7 @@
 					"response": []
 				},
 				{
-					"name": "Get Appt for Hospital",
+					"name": "Get Appt for Hotel",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -592,14 +592,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/hospitals/65dd89e165c523f902749242/appointments",
+							"raw": "{{URL}}/api/v1/hotels/65dd89e165c523f902749242/appointments",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"hospitals",
+								"hotels",
 								"65dd89e165c523f902749242",
 								"appointments"
 							]
@@ -639,14 +639,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/hospitals/65dd89e165c523f902749225/appointments/",
+							"raw": "{{URL}}/api/v1/hotels/65dd89e165c523f902749225/appointments/",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"hospitals",
+								"hotels",
 								"65dd89e165c523f902749225",
 								"appointments",
 								""
@@ -679,7 +679,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"apptDate\": \"2021-01-15T17:00:00.000Z\",\r\n    \"hospital\": \"65dd89e165c523f90274925c\"\r\n}",
+							"raw": "{\r\n    \"apptDate\": \"2021-01-15T17:00:00.000Z\",\r\n    \"hotel\": \"65dd89e165c523f90274925c\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

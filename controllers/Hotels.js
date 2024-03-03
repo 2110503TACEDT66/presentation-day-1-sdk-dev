@@ -1,10 +1,10 @@
-const Hospital = require("../models/Hospital.js");
+const Hotel = require("../models/Hotel.js");
 const vacCenter = require("../models/VacCenter.js");
 
-//@desc     Get all hospitals
-//@route    Get /api/v1/hospitals
+//@desc     Get all hotels
+//@route    Get /api/v1/hotels
 //@access   Public
-exports.getHospitals = async (req, res, next) => {
+exports.getHotels = async (req, res, next) => {
   let query;
 
   //Copy req.query
@@ -25,7 +25,7 @@ exports.getHospitals = async (req, res, next) => {
   );
 
   //finding resource
-  query = Hospital.find(JSON.parse(queryStr)).populate("appointments");
+  query = Hotel.find(JSON.parse(queryStr)).populate("appointments");
 
   //Select Fields
   if (req.query.select) {
@@ -47,10 +47,10 @@ exports.getHospitals = async (req, res, next) => {
   const endIndex = page * limit;
 
   try {
-    const total = await Hospital.countDocuments();
+    const total = await Hotel.countDocuments();
     query = query.skip(startIndex).limit(limit);
     //Execute query
-    const hospitals = await query;
+    const hotels = await query;
 
     //Pagination result
     const pagination = {};
@@ -69,76 +69,76 @@ exports.getHospitals = async (req, res, next) => {
     }
     res.status(200).json({
       success: true,
-      count: hospitals.length,
+      count: hotels.length,
       pagination,
-      data: hospitals,
+      data: hotels,
     });
   } catch (err) {
     res.status(400).json({ success: false });
   }
 };
 
-//@desc     Get single hospitals
-//@route    Get /api/v1/hospitals/:id
+//@desc     Get single hotels
+//@route    Get /api/v1/hotels/:id
 //@access   Public
-exports.getHospital = async (req, res, next) => {
+exports.getHotel = async (req, res, next) => {
   try {
-    const hospital = await Hospital.findById(req.params.id);
-    if (!hospital) {
+    const hotel = await Hotel.findById(req.params.id);
+    if (!hotel) {
       return res.status(400).json({ success: false });
     }
-    res.status(200).json({ success: true, data: hospital });
+    res.status(200).json({ success: true, data: hotel });
   } catch (err) {
     res.status(400).json({ success: false });
   }
 };
 
-//@desc     Post a hospitals
-//@route    Post /api/v1/hospitals
+//@desc     Post a hotels
+//@route    Post /api/v1/hotels
 //@access   Private
-exports.createHospital = async (req, res, next) => {
-  const hospital = await Hospital.create(req.body);
-  res.status(201).json({ success: true, data: hospital });
+exports.createHotel = async (req, res, next) => {
+  const hotel = await Hotel.create(req.body);
+  res.status(201).json({ success: true, data: hotel });
 };
 
-//@desc     Update single hospitals
-//@route    Put /api/v1/hospitals/:id
+//@desc     Update single hotels
+//@route    Put /api/v1/hotels/:id
 //@access   Private
-exports.updateHospital = async (req, res, next) => {
+exports.updateHotel = async (req, res, next) => {
   try {
-    const hospital = await Hospital.findByIdAndUpdate(req.params.id, req.body, {
+    const hotel = await Hotel.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
-    if (!hospital) {
+    if (!hotel) {
       return res.status(400).json({ success: false });
     }
-    res.status(200).json({ success: true, data: hospital });
+    res.status(200).json({ success: true, data: hotel });
   } catch (err) {
     res.status(400).json({ success: false });
   }
 };
 
-//@desc     Delete single hospitals
-//@route    Delet /api/v1/hospitals/:id
+//@desc     Delete single hotels
+//@route    Delet /api/v1/hotels/:id
 //@access   Private
-exports.deleteHospital = async (req, res, next) => {
+exports.deleteHotel = async (req, res, next) => {
   try {
-    const hospital = await Hospital.findById(req.params.id);
+    const hotel = await Hotel.findById(req.params.id);
 
-    if (!hospital) {
+    if (!hotel) {
       return res.status(400).json({ success: false });
     }
 
-    await hospital.deleteOne();
+    await hotel.deleteOne();
     res.status(200).json({ success: true, data: {} });
   } catch (err) {
     res.status(400).json({ success: false });
   }
 };
 
-//@desc Get vaccine centers
-//@route GET /api/v1/hospitals/vacCenters/
+/*//@desc Get vaccine centers
+//@route GET /api/v1/hotels/vacCenters/
 //@access Public;
 exports.getVacCenters = (req, res, next) => {
   vacCenter.getAll((err, data) => {
@@ -150,4 +150,4 @@ exports.getVacCenters = (req, res, next) => {
       });
     else res.send(data);
   });
-};
+};*/
