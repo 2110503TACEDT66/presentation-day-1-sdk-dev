@@ -7,11 +7,12 @@ const User = require("../models/User");
 
 exports.register = async (req, res, next) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, tel, email, password, role } = req.body;
 
     //Create user
     const user = await User.create({
       name,
+      tel,
       email,
       password,
       role,
@@ -28,40 +29,22 @@ exports.register = async (req, res, next) => {
 
 exports.reset = async (req, res, next) => {
   try {
-    const { email, password, new_password } = req.body;
+    const { current_password, new_password } = req.body;
 
     //Validate email & password
-    if (!email || !password) {
+    if (!current_password) {
       return res
         .status(400)
-        .json({ success: false, msg: "Please provide an email and password" });
+        .json({ success: false, msg: "Please provide current password" });
     }
 
     //Check for user
-    let user = await User.findOne({ email }).select("+password");
-
-    if (!user) {
-      return res
-        .status(400)
-        .json({ success: false, msg: "Invalid credentials" });
-    }
-
-    //Check if password matches
-    const isMatch = await user.matchPassword(password);
-    if (!isMatch) {
+    let user = await User.findById(req.user.id).select("+password");;
+    if(!(await user.changePassword(current_password,new_password))){
       return res
         .status(401)
         .json({ success: false, msg: "Invalid credentials" });
     }
-
-    const salt = await bcrypt.genSalt(10);
-    req.body["password"] = await bcrypt.hash(new_password, salt);
-
-    user = await User.findByIdAndUpdate(user.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
-
     //Create token
     // const token = user.getSignedJwtToken();
     // res.status(200).json({ success: true, token });
