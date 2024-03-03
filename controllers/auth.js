@@ -1,3 +1,4 @@
+const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 
 //@desc Register user
@@ -22,6 +23,54 @@ exports.register = async (req, res, next) => {
   } catch (err) {
     res.status(400).json({ success: false });
     console.log(err.stack);
+  }
+};
+
+exports.reset = async (req, res, next) => {
+  try {
+    const { email, password, new_password } = req.body;
+
+    //Validate email & password
+    if (!email || !password) {
+      return res
+        .status(400)
+        .json({ success: false, msg: "Please provide an email and password" });
+    }
+
+    //Check for user
+    let user = await User.findOne({ email }).select("+password");
+
+    if (!user) {
+      return res
+        .status(400)
+        .json({ success: false, msg: "Invalid credentials" });
+    }
+
+    //Check if password matches
+    const isMatch = await user.matchPassword(password);
+    if (!isMatch) {
+      return res
+        .status(401)
+        .json({ success: false, msg: "Invalid credentials" });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    req.body["password"] = await bcrypt.hash(new_password, salt);
+
+    user = await User.findByIdAndUpdate(user.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    //Create token
+    // const token = user.getSignedJwtToken();
+    // res.status(200).json({ success: true, token });
+    sendTokenResponse(user, 200, res);
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Cannot update user" });
   }
 };
 
