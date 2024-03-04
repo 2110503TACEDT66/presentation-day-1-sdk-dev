@@ -515,7 +515,7 @@
 			]
 		},
 		{
-			"name": "Reservations",
+			"name": "Bookings",
 			"item": [
 				{
 					"name": "Get All Appts",
@@ -533,14 +533,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/reservations",
+							"raw": "{{URL}}/api/v1/bookings",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"reservations"
+								"bookings"
 							]
 						}
 					},
@@ -562,14 +562,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/reservations/65ddb00f65c523f90274930d",
+							"raw": "{{URL}}/api/v1/bookings/65ddb00f65c523f90274930d",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"reservations",
+								"bookings",
 								"65ddb00f65c523f90274930d"
 							]
 						}
@@ -592,7 +592,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/hotels/65dd89e165c523f902749242/reservations",
+							"raw": "{{URL}}/api/v1/hotels/65dd89e165c523f902749242/bookings",
 							"host": [
 								"{{URL}}"
 							],
@@ -601,7 +601,7 @@
 								"v1",
 								"hotels",
 								"65dd89e165c523f902749242",
-								"reservations"
+								"bookings"
 							]
 						}
 					},
@@ -639,7 +639,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/hotels/65dd89e165c523f902749225/reservations/",
+							"raw": "{{URL}}/api/v1/hotels/65dd89e165c523f902749225/bookings/",
 							"host": [
 								"{{URL}}"
 							],
@@ -648,7 +648,7 @@
 								"v1",
 								"hotels",
 								"65dd89e165c523f902749225",
-								"reservations",
+								"bookings",
 								""
 							]
 						}
@@ -687,14 +687,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/reservations/65ddd36ed2829d391b294e71",
+							"raw": "{{URL}}/api/v1/bookings/65ddd36ed2829d391b294e71",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"reservations",
+								"bookings",
 								"65ddd36ed2829d391b294e71"
 							]
 						}
@@ -724,14 +724,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/api/v1/reservations/65ddd9f31422da906bb66110",
+							"raw": "{{URL}}/api/v1/bookings/65ddd9f31422da906bb66110",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"reservations",
+								"bookings",
 								"65ddd9f31422da906bb66110"
 							]
 						}

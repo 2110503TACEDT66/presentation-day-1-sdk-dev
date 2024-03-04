@@ -176,14 +176,14 @@ const {
 */
 
 //Include other resource routes
-const reservationRouter = require("./reservations");
+const bookingRouter = require("./bookings");
 
 const router = express.Router();
 
 const { protect, authorize } = require("../middleware/auth");
 
 //Re-route into other resource routers
-router.use("/:hotelId/reservations/", reservationRouter);
+router.use("/:hotelId/bookings/", bookingRouter);
 
 router
   .route("/")

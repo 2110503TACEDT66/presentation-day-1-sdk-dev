@@ -41,20 +41,20 @@ const HotelSchema = new mongoose.Schema(
 );
 
 //Reverse populate with virtuals
-HotelSchema.virtual("reservations", {
-  ref: "Reservation",
+HotelSchema.virtual("bookings", {
+  ref: "Booking",
   localField: "_id",
   foreignField: "hotel",
   justone: false,
 });
 
-//Cascade delete reservations when a hotel is deleted
+//Cascade delete bookings when a hotel is deleted
 HotelSchema.pre(
   "deleteOne",
   { document: true, query: false },
   async function (next) {
-    console.log(`Reservations being removed from hotel ${this._id}`);
-    await this.model("Reservation").deleteMany({ hotel: this._id });
+    console.log(`Bookings being removed from hotel ${this._id}`);
+    await this.model("Booking").deleteMany({ hotel: this._id });
     next();
   }
 );

@@ -24,7 +24,7 @@ exports.getHotels = async (req, res, next) => {
   );
 
   //finding resource
-  query = Hotel.find(JSON.parse(queryStr)).populate("reservations");
+  query = Hotel.find(JSON.parse(queryStr)).populate("bookings");
 
   //Select Fields
   if (req.query.select) {
