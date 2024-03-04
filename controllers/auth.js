@@ -52,7 +52,7 @@ exports.reset = async (req, res, next) => {
     console.log(error);
     return res
       .status(500)
-      .json({ success: false, message: "Cannot update user" });
+      .json({ success: false, message: "Cannot change password" });
   }
 };
 
@@ -112,6 +112,39 @@ exports.logout = async (req, res, next) => {
     data: {},
   });
 };
+
+exports.deleteUser = async (req, res, next) => {
+  try {
+    const { password } = req.body;
+
+    //Validate email & password
+    if (!password) {
+      return res
+        .status(400)
+        .json({ success: false, msg: "Please provide password" });
+    }
+
+    //Check for user
+    let user = await User.findById(req.user.id).select("+password");;
+    if(!(await user.matchPassword(password))){
+      return res
+        .status(401)
+        .json({ success: false, msg: "Invalid credentials" });
+    }
+
+    await user.deleteOne();
+    res.status(200).json({
+      success: true,
+      data: {},
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Cannot delete user" });
+  }
+};
+
 
 //Get token from model, create cookie and send response
 const sendTokenResponse = (user, statusCode, res) => {
