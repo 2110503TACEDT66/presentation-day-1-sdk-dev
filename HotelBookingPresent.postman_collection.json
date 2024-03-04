@@ -621,7 +621,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"date\": \"{{$randomDateFuture}}\",\r\n    \"hotel\": \"65df4e79dc8452a715f007a1\"\r\n}",
+					"raw": "{\r\n    \"date\": \"{{$randomDateFuture}}\",\r\n    \"hotel\": \"65e5e303bc09c3838b5a1a6d\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -917,7 +917,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"date\": \"2024-03-15T17:00:00.000Z\",\r\n    \"hospital\": \"65df4e79dc8452a715f007a1\"\r\n}",
+					"raw": "{\r\n    \"date\": \"{{$randomDateFuture}}\",\r\n    \"hotel\": \"65e5e303bc09c3838b5a1a6d\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
