@@ -38,7 +38,7 @@ exports.reset = async (req, res, next) => {
     }
 
     //Check for user
-    let user = await User.findById(req.user.id).select("+password");;
+    let user = await User.findById(req.user.id).select("+password");
     if(!(await user.changePassword(current_password,new_password))){
       return res
         .status(401)
